@@ -1,7 +1,7 @@
 import inputdata
 from keycomp import KeyComparisons
 
-def merge(arr, left, right, mid, myObj):
+def merge(arr, left, mid, right, myObj):
     n1 = mid - left + 1
     n2 = right - mid
 
@@ -17,13 +17,13 @@ def merge(arr, left, right, mid, myObj):
     i, j = 0, 0
     k = left
 
-    while i<n1 and j < n2:
-        if L[i] <= R[j] and myObj.lessthanb(L[i], R[j]):
-            arr[k] = L[i]
-            i+=1
-        elif R[j] <= L[i] and myObj.lessthanb(R[j], L[i]):
+    while i< n1 and j < n2:
+        if myObj.lessthanb(R[j], L[i]):
             arr[k] = R[j]
             j+=1
+        else:
+            arr[k] = L[i]
+            i+=1
         k+=1
 
     while i < n1:
@@ -36,19 +36,19 @@ def merge(arr, left, right, mid, myObj):
         j+=1
         k+=1
 
-def mergesort(arr, right, left, myObj):
+def mergesort(arr, left, right, myObj):
     if left < right:
         mid = (left + right) // 2 
 
-        mergesort(arr, mid, left, myObj)
-        mergesort(arr, right, mid+1, myObj)
-        merge(arr, left, right, mid, myObj)
+        mergesort(arr, left, mid, myObj)
+        mergesort(arr, mid+1, right, myObj)
+        merge(arr, left, mid, right, myObj)
 
 data = inputdata.generateData()
 myObj = KeyComparisons()
 
 for s in data:
-    mergesort(s, len(s), 0, myObj)
+    mergesort(s, 0, len(s)-1, myObj)
     print(s)
 
     
