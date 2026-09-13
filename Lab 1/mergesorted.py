@@ -36,6 +36,8 @@ def merge(arr, left, mid, right, myObj):
         j+=1
         k+=1
 
+    return arr
+
 def mergesort(arr, left, right, myObj):
     if left < right:
         mid = (left + right) // 2 
@@ -47,8 +49,8 @@ def mergesort(arr, left, right, myObj):
 data = inputdata.generateData()
 myObj = KeyComparisons()
 
-for s in data:
-    mergesort(s, 0, len(s)-1, myObj)
-    print(s)
+# for s in data:
+#     mergesort(s, 0, len(s)-1, myObj)
+#     print(s)
 
     
