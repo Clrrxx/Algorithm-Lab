@@ -2,9 +2,10 @@
 # Find the shortest path distances from the source vertex to all other vertices in the graph
 import heapq
 import sys
+import GraphFns
 
 
-def dijkstra(adj, source):
+def dijkstra_list_heap(adj, source):
     V = len(adj)
 
     #min heap priority queue, stores pairs of (distance, node)
@@ -15,6 +16,7 @@ def dijkstra(adj, source):
 
     #distance from source to itself is 0
     dist[source] = 0
+
     heapq.heappush(pq, (0, source))
 
     #process queue until all reacheable vertices are reached
@@ -40,16 +42,14 @@ def dijkstra(adj, source):
 #testing
 if __name__ == "__main__":
     src = 0
+
+    #test 
+    n = 10
+    e = n*(n-1)
+    adjMatrix = GraphFns.graph_generator(n, e)
+    adjList = GraphFns.convert_to_adjList(adjMatrix, n)
     
-    adj = [
-        [(1, 4), (2, 8)],
-        [(0, 4), (4, 6), (2, 3)],
-        [(0, 8), (3, 2), (1, 3)],
-        [(2, 2), (4, 10)],
-        [(1, 6), (3, 10)]
-    ]
-    
-    result = dijkstra(adj, src)
+    result = dijkstra_list_heap(adjList, src)
     print(*result)
 
 
