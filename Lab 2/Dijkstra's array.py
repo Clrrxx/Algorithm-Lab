@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
 # what is the difference here?
 # note senior's implmentation is using priority queue implementation whereas this implementation
-# uses purely an array, no priority queue. This is a very naive implementation and is 
+# uses purely an array, no priority queue. This is a very naive implementation and is better for dense graphs
     
 
 
